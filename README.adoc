@@ -1,4 +1,4 @@
-== Solution patterns site template 
+== Solution pattern: MultiCloud Gitops with ODF
 
 This is a template used to generate new solution pattern pages with the same look and feel of the existing solution patterns and https://redhat-solution-patterns.github.io/[main page] .
 

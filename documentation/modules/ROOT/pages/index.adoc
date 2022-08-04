@@ -1,11 +1,11 @@
-= Solution Patterns: Template Name
+= Solution Pattern: MultiCloud GitOps with ODF
 :page-layout: home
 :sectnums:
 :sectlinks:
 :doctype: book
 
 == Solution overview
-This solution pattern brings an architectural solution for scenarios where code(GitOps) can be used for managing different Openshift clusters across multiple clouds and deploying Red Hat ODF(software defined storage) on these clusters. 
+This solution pattern brings an architectural solution for scenarios where code(GitOps) can be used for managing different Openshift clusters running across multiple clouds and deploying Red Hat ODF(software defined storage) on these clusters. 
 
 The architecture demonstrates how ArgoCD with Red Hat ACM can manage different clusters and applications deployed on those clusters.
 
@@ -14,10 +14,12 @@ include::content-overview.adoc[]
 [#use-cases]
 == Use cases
 
-Common use cases that can be address with this architecture are:
+Organizations are looking for a way to develop and deploy applications on Openshift clusters running in an open hybrid cloud in a stable, simple and secure way. In addition to it, they want to manage these clusters and applications through code. Common use cases that can be address with this architecture are:
 
-- xyz
-- xyz
+- Use GitOps(ArgoCD) to apply best DevOps practices in the environment. 
+- Manage different Openshift clusters running in multiple clouds through RedHat ACM deployed in centralized Hub cluster.
+- Use RedHat ODF in the clusters for persistent storage of data.
+- Deploy Red Hat Quay with ODF as the backend. Quay can be used as private internal registry for storing container images.
 
 include::01-pattern.adoc[]
 
