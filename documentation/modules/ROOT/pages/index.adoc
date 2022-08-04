@@ -5,7 +5,7 @@
 :doctype: book
 
 == Solution overview
-This solution pattern brings an architectural solution for scenarios where code(GitOps) can be used for managing different Openshift clusters running across multiple clouds and deploying Red Hat ODF(software defined storage) on these clusters. 
+This solution pattern brings an architectural solution for scenarios where code(GitOps) can be used for managing different Openshift clusters running across multiple clouds and deploying Red Hat ODF(software defined storage) on these clusters. RedHat ODF can be configured differently for each cluster as per the requirements through code.
 
 The architecture demonstrates how ArgoCD with Red Hat ACM can manage different clusters and applications deployed on those clusters.
 

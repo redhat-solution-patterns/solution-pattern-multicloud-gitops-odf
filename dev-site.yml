@@ -13,7 +13,7 @@ content:
       start_path: documentation
 asciidoc:
   attributes:
-    title: Red Hat Solution Patterns (Dev Mode)
+    title: "Solution Pattern: MultiCloud GitOps with ODF"
   extensions:
     - ./lib/remote-include-processor.js
     - ./lib/tab-block.js
