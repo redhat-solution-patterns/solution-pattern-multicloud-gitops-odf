@@ -4,7 +4,7 @@ runtime:
 site:
   title: Solution Patterns for Cloud Native Architectures
   url: https://redhat-solution-patterns.github.io/solution-patterns/
-  start_page: solution-pattern-template::index.adoc
+  start_page: solution-pattern-multicloud-gitops-odf::index.adoc
 
 content:
   sources:

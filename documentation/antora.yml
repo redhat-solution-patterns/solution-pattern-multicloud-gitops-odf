@@ -1,5 +1,5 @@
-name: solution-pattern-template
-title: Template Tutorial
+name: solution-pattern-multicloud-gitops-odf
+title: MultiCloud GitOps with ODF
 version: master
 nav:
   - modules/ROOT/nav.adoc
