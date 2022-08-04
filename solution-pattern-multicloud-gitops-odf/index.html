@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Solution Patterns: Template Name :: Solution Patterns for Cloud Native Architectures</title>
+    <title>Solution Pattern: MultiCloud GitOps with ODF :: Solution Patterns for Cloud Native Architectures</title>
     <link rel="canonical" href="https://redhat-solution-patterns.github.io/solution-patterns/solution-pattern-multicloud-gitops-odf/index.html">
     <link rel="next" href="01-pattern.html#_the_story_behind_this_solution_pattern">
     <meta name="generator" content="Antora 3.0.0">
@@ -183,12 +183,12 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Solution Patterns: Template Name</h1>
+<h1 class="page">Solution Pattern: MultiCloud GitOps with ODF</h1>
 <div class="sect1">
 <h2 id="_solution_overview"><a class="anchor" href="#_solution_overview"></a><a class="link" href="#_solution_overview">1. Solution overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This solution pattern brings an architectural solution for scenarios where code(GitOps) can be used for managing different Openshift clusters across multiple clouds and deploying Red Hat ODF(software defined storage) on these clusters.</p>
+<p>This solution pattern brings an architectural solution for scenarios where code(GitOps) can be used for managing different Openshift clusters running across multiple clouds and deploying Red Hat ODF(software defined storage) on these clusters.</p>
 </div>
 <div class="paragraph">
 <p>The architecture demonstrates how ArgoCD with Red Hat ACM can manage different clusters and applications deployed on those clusters.</p>
@@ -250,15 +250,21 @@
 <h2 id="use-cases"><a class="anchor" href="#use-cases"></a><a class="link" href="#use-cases">2. Use cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Common use cases that can be address with this architecture are:</p>
+<p>Organizations are looking for a way to develop and deploy applications on Openshift clusters running in an open hybrid cloud in a stable, simple and secure way. In addition to it, they want to manage these clusters and applications through code. Common use cases that can be address with this architecture are:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>xyz</p>
+<p>Use GitOps(ArgoCD) to apply best DevOps practices in the environment.</p>
 </li>
 <li>
-<p>xyz</p>
+<p>Manage different Openshift clusters running in multiple clouds through RedHat ACM deployed in centralized Hub cluster.</p>
+</li>
+<li>
+<p>Use RedHat ODF in the clusters for persistent storage of data.</p>
+</li>
+<li>
+<p>Deploy Red Hat Quay with ODF as the backend. Quay can be used as private internal registry for storing container images.</p>
 </li>
 </ul>
 </div>
@@ -268,7 +274,7 @@
 <h2 id="_the_story_behind_this_solution_pattern"><a class="anchor" href="#_the_story_behind_this_solution_pattern"></a><a class="link" href="#_the_story_behind_this_solution_pattern">3. The story behind this solution pattern</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A description of the story that was used to build the demo and architectures of this SP.</p>
+<p>Kubernetes is an open-source container orchestration engine for automating deployment, scaling and management of containerized applications. It is being used heavily for production grade applications. Kubernetes clusters are being created and used in public and private clouds. Managing 100s of clusters across multi-cloud and running 1000s of applications on those clusters is cumbersome. Using GitOps(ArgoCD) and RedHat ACM, we can manage multiple kubernetes clusters as well as deployments of applications on those clusters. Majority of the applications need persistent storage. RedHat provides ODF as software defined storage solution which can be deployed across multiple clusters through GitOps.</p>
 </div>
 </div>
 </div>
