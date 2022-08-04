@@ -1,0 +1,22 @@
+= Solution Patterns: Template Name
+:page-layout: home
+:sectnums:
+:sectlinks:
+:doctype: book
+
+A brief introduction of this solution pattern.
+
+include::content-overview.adoc[]
+
+[#use-cases]
+== Use cases
+
+Common use cases that can be address with this architecture are:
+
+- xyz
+- xyz
+
+include::01-pattern.adoc[]
+
+== Explore more solution patterns
+include::https://raw.githubusercontent.com/redhat-solution-patterns/redhat-solution-patterns.github.io/master/documentation/modules/ROOT/pages/solution-pattern-list.adoc[]

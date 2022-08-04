@@ -1,0 +1,7 @@
+== The story behind this solution pattern
+
+A description of the story that was used to build the demo and architectures of this SP.
+
+== The Solution
+
+This is a summary of the solution

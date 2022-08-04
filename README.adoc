@@ -1,0 +1,131 @@
+== Solution patterns site template 
+
+This is a template used to generate new solution pattern pages with the same look and feel of the existing solution patterns and https://redhat-solution-patterns.github.io/[main page] .
+
+What's in this doc:
+
+* <<How to create a new solution pattern page>> 
+* <<Development Quickstart>>
+** <<Clone and install the new project>>
+** <<Run and preview the website>>
+* <<How to add my new solution pattern to the main page menu>>
+* <<Learn more>>
+
+=== How to create a new solution pattern page
+
+To create a new solution pattern page:
+
+. Access to https://github.com/redhat-solution-patterns/courseware-template;
+. Click on the `Use this template` green button;
+. Type the name of your new sp, e.g. "solution-pattern-xy-z".
+* It's recommended that you are the owner of the repository during the initial phases of development;
+. Click on the `Create repository from template` green button
+You should have a new repository with the required files and configurations to get started with content development.
+
+=== Development Quickstart
+
+This section offers a basic tutorial to teach you how to set up the generated project, and preview it locally. A more comprehensive can be found in the documentation at docs.antora.org.
+
+[#prereqs]
+==== Prerequisites
+To preview and bundle the default UI, you need the following software on your computer:
+
+* git (command: git)
+* Node.js (commands: node and npm)
+* Gulp CLI (command: gulp)
+
+===== Node.js
+
+In this guide, we'll be installing Node.js 10.
+
+While you can install Node.js from the official packages, we strongly recommend that you use {url-nvm}[nvm] (Node Version Manager) to manage your Node.js installation(s).
+Follow the {url-nvm-install}[nvm installation instructions] to set up nvm on your machine.
+
+Once you've installed nvm, open a new terminal and install Node.js 10 using the following command:
+
+ $ nvm install 10
+
+You can switch to this version of Node.js at any time using the following command:
+
+ $ nvm use 10
+
+To make Node.js 10 the default in new terminals, type:
+
+ $ nvm alias default 10
+
+Now that you have Node.js installed, you can proceed with installing the Gulp CLI.
+
+===== Gulp CLI
+
+You'll need the Gulp command-line interface (CLI) to run the build.
+The Gulp CLI package provides the `gulp` command which, in turn, executes the version of Gulp declared by the project.
+
+You should install the Gulp CLI globally (which resolves to a location in your user directory if you're using nvm) using the following command:
+
+ $ npm install -g gulp-cli
+
+Verify the Gulp CLI is installed and on your PATH by running:
+
+ $ gulp --version
+
+Now that you have the prerequisites installed, you can fetch and build the UI project.
+
+=== Clone and install the new project
+
+1. Clone the generated project using git.
+2. Use npm to install the project's dependencies inside the project.
+In your terminal, execute the following command:
+
+ $ npm install
+
+=== Run and preview the website
+
+To build and preview the project in a local web server, run:
+
+ $ npx gulp
+
+You'll see a URL listed in the output of this command:
+
+....
+[16:49:17] Requiring external module @babel/register
+[16:49:18] Using gulpfile ~/your/project/directory/gulpfile.babel.js
+[16:49:18] Starting 'default'...
+[16:49:18] Starting 'removeSite'...
+[16:49:18] Finished 'removeSite' after 20 ms
+[16:49:18] Starting 'removeCache'...
+[16:49:18] Finished 'removeCache' after 1.7 ms
+[16:49:18] Starting 'build'...
+[16:49:20] Finished 'build' after 2.75 s
+[16:49:20] Starting 'serve'...
+[16:49:20] Finished 'serve' after 8.75 ms
+[16:49:20] Starting 'siteWatch'...
+[Browsersync] Access URLs:
+ --------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.0.114:3000
+ --------------------------------------
+          UI: http://localhost:3001
+ UI External: http://localhost:3001
+ --------------------------------------
+[Browsersync] Serving files from: ./gh-pages
+....
+
+Navigate to this URL to preview the site locally.
+
+While this command is running, any changes you make to the source files will be instantly reflected in the browser.
+
+Press `[Ctrl+C]` to stop the preview server and end the continuous build.
+
+=== How to add my new solution pattern to the main page menu
+
+To have your solution pattern listed in the top menu, please open a new issue in
+https://github.com/redhat-solution-patterns/course-ui/issues[this project: https://github.com/redhat-solution-patterns/course-ui/issues].
+
+Make sure to inform:
+
+* Short title
+* Main category (if appropriate). e.g. "Application modernization", "Edge", etc.
+
+=== Learn more
+
+This template is based on the Red Hat Developers scholars courseware template. To learn more, check the build courseware https://redhat-scholars.github.io/build-course[documentation]  on how folder structure, how to use macros and other gotchas.

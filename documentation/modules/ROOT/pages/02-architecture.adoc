@@ -1,0 +1,33 @@
+= Solution Pattern: Name Template
+:sectnums:
+:sectlinks:
+:doctype: book
+
+= Architecture 
+
+Introduction for the architecture of this solution pattern.
+
+== Common Challenges 
+
+[#tech_stack]
+== Technology Stack
+
+// Change links and text here as you see fit.
+* https://www.redhat.com/en/technologies/cloud-computing/openshift[Red Hat OpenShift]
+* Red Hat Application Foundation
+** https://access.redhat.com/products/quarkus[Quarkus]
+** https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-streams-for-apache-kafka[Kafka Streams]
+* Other:
+** https://www.postgresql.org/[PostgreSQL database]
+** https://helm.sh/[Helm]
+
+
+[#in_depth]
+== An in-depth look at the solution's architecture
+
+Technical description including all or some of the following: architecture ir ed diagrams. In-depth details of the decisions made and solutions used. Description of each service and what it is used for. Description of any integration.
+
+[#more_tech]
+== About the Technology Stack
+
+If you want to include more details about the tech stack you used, this is the place.

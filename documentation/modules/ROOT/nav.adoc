@@ -1,0 +1,26 @@
+* xref:index.adoc[{counter:module}. Home page]
+** xref:index.adoc#use-cases[{module}.{counter:submodule1} Use cases]
+** xref:01-pattern.adoc#_the_story_behind_this_solution_pattern[{module}.{counter:submodule1} The story behind this solution pattern]
+** xref:01-pattern#_the_solution[{module}.{counter:submodule1} The solution]
+** xref:index.adoc#_content_overview[{module}.{counter:submodule1} Content Overview]
+** xref:index.adoc#_content_overview[{module}.{counter:submodule1} Explore more solution patterns]
+
+* xref:02-architecture.adoc[{counter:module}. Architecture]
+** xref:02-architecture.adoc#tech_stack[{module}.{counter:submodule2}. Technology stack]
+** xref:02-architecture.adoc#in_depth[{module}.{counter:submodule2}. An in-depth look at the solution's architecture]
+** xref:02-architecture.adoc#tech_stack[{module}.{counter:submodule2}. More about the technology stack]
+
+* xref:03-demo.adoc[{counter:module}. See the Solution in Action]
+** xref:03-demo.adoc#_demonstration[{module}.{counter:submodule3}. Demonstration]
+** xref:03-demo.adoc#_run_the_demonstration[{module}.{counter:submodule3}. Run this demonstration]
+*** xref:03-demo.adoc#_before_getting_started[{module}.{counter:submodule3}. Pre-requisites]
+*** xref:03-demo.adoc#_installing_the_demo[{module}.{counter:submodule3}. Installing the demo]
+*** xref:03-demo.adoc#_walkthrough_guide[{module}.{counter:submodule3}. Walkthrough guide]
+
+* xref:04-workshop.adoc[{counter:module}. Workshop]
+** xref:04-workshop.adoc#_installing_the_workshop_environment[{module}.{counter:submodule4}. Installing the workshop environment]
+*** xref:04-workshop.adoc#_before_getting_started[{module}.{counter:submodule4}. Pre-requisites
+*** xref:04-workshop.adoc#install_wksp_details[{module}.{counter:submodule4}. Installing the environment]
+** xref:04-workshop.adoc#deliver_wksp[{module}.{counter:submodule4}. Delivering the workshop]
+
+* https://redhat-solution-patterns.github.io/[{counter:module}. Other Red Hat Solution Patterns]
