@@ -7,16 +7,23 @@
 
 == Demonstration
 
-Include here content related to potential existing demos: blogs, articles, recorded videos, walkthrough guides, tutorials.
+Demo is split into two parts:
+
+* Bootstrapping ODF Multicloud GitOps Part 1 : This video demonstrates Hub Cluster setup, ArgoCD deployment and import of the existing openshift clusters. Once clusters are imported, these managed clusters will be managed by RedHat ACM.
+
+* Bootstrapping ODF Mutlicloud GitOps Part 2 - AWS, GCP and Azure : This video demonstrates ODF installation on Hub as well as Managed clusters and RedHat Quay installation on the Hub Cluster.
 
 [#demo-video]
 === Watch a demonstration
 
-In this video you can see xpto:
+Bootstrapping ODF Multicloud GitOps Part 1
 
-video::3yULVMdqJ98[youtube, width=800, height=480]
+video::vLgpsfsA-9k[youtube, width=800, height=480]
 
-Next, you can learn how to walkthrough this demo.
+Bootstrapping ODF Mutlicloud GitOps Part 2 - AWS, GCP and Azure
+
+video::Tl0-3Xqgu84[youtube, width=800, height=480]
+
 
 == Run the demonstration
 

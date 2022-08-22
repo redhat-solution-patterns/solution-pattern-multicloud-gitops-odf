@@ -4,4 +4,5 @@ Kubernetes is an open-source container orchestration engine for automating deplo
 
 == The Solution
 
-This is a summary of the solution
+This solution pattern uses GitOps(ArgoCD) to manage Openshift Clusters and applications. ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. ArgoCD follows the GitOps pattern of using Git repos as source of truth for defining the desired application state. Kubernetes manifests can be specified in several ways: kustomize or helm charts or jsonnet or yaml files. ArgoCD automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches, tags or pinned to a specific version of manifests at a Git commit. In addition to this, multiple openshift clusters, running in hybrid cloud can be managed using RedHat ACM. RedHat ODF is also deployed and configured through ArgoCD in multiple clusters as per the requirement.
+    

@@ -8,26 +8,50 @@
 Introduction for the architecture of this solution pattern.
 
 == Common Challenges 
+Most existing  processes for infrastructure, configuration & deployment management face challenges like failed deployments, poor infrastructure design etc. Some of the common challenges are:
+
+- Configuration inconsistency in environments: It is difficult to track whether desired and actual configuration of an environment match. With manual changes being done, configuration drift will exist in the environment.
+- No development history of applications: It is difficult to find out how applications were built and deployed initially and who worked on them.
+- Security holes in environments: These holes were created for the sake of easier admin access to Continuous Delivery tools. These holes ensure velocity and convenience of development but endanger both applications and their users.
+- Difficulties of disaster recovery: With manual/half-manual processes, disaster recovery requires a strategy in place, which isn’t always upto date.
+
+Fortunately, the GitOps approach can help us resolve all of these issues, provided its principles are properly implemented.
+
+In addition to the above challenges, we could also face security attacks if vulnerable images are being used from Public Container Images.
+
+RedHat ODF can be used to create private Red Hat Quay registry, a distributed and highly available container image registry for the enterprise. Quay provides secure storage, distribution and governance of containers and cloud-native artifacts on any infrastructure.
 
 [#tech_stack]
 == Technology Stack
 
 // Change links and text here as you see fit.
 * https://www.redhat.com/en/technologies/cloud-computing/openshift[Red Hat OpenShift]
-* Red Hat Application Foundation
-** https://access.redhat.com/products/quarkus[Quarkus]
-** https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-streams-for-apache-kafka[Kafka Streams]
+* https://access.redhat.com/products/red-hat-advanced-cluster-management-for-kubernetes[Red Hat ACM]
+* https://access.redhat.com/products/red-hat-openshift-data-foundation[RedHat ODF]
+* https://access.redhat.com/products/red-hat-quay[RedHat Quay]
+
 * Other:
-** https://www.postgresql.org/[PostgreSQL database]
+** https://argo-cd.readthedocs.io/en/stable/[ArgoCD]
 ** https://helm.sh/[Helm]
+** https://www.vaultproject.io/[HashiCorp Vault]
 
 
 [#in_depth]
 == An in-depth look at the solution's architecture
 
-Technical description including all or some of the following: architecture ir ed diagrams. In-depth details of the decisions made and solutions used. Description of each service and what it is used for. Description of any integration.
+This solution has a Hub Cluster or Management Hub which manages all the other managed clusters. Hub Cluster has ArgoCD deployed in it, which in turns deploys different applications such as RedHat ACM, Vault etc. We can create new or import existing Openshift clusters through RedHat ACM.
+[link=architecture.png, window="_blank"]
+image::architecture.png[width=100%]
 
-[#more_tech]
-== About the Technology Stack
+MultiCloud GitOps Flow:
+This flow displays how different components are getting deployed and where are these getting deployed. ArgoCD is a critical component of the architecture. A policy on RedHat ACM ensures all the managed clusters have their own ArgoCD deployed through an Openshift GitOps operator. ArgoCD on a managed cluster uses GitHub repo to deploy the applications.
 
-If you want to include more details about the tech stack you used, this is the place.
+
+[link=MultiCloudGitOpsflow_1.jpg, window="_blank"]
+image::MultiCloudGitOpsflow_1.jpg[width=100%]
+
+MultiCloud GitOps with ODF & Quay: 
+ODF is being installed on Hub and Managed clusters as an ArgoCD application. We can configure ODF installation on each cluster as per the requirements. Once ODF is installed on Hub Cluster, RedHat Quay is also deployed which is using RedHat ODF as the backend. RedHat Quay is a distributed and highly available container image registry.
+
+[link=MultiCloudODF.jpg, window="_blank"]
+image::MultiCloudODF.jpg[width=100%]
