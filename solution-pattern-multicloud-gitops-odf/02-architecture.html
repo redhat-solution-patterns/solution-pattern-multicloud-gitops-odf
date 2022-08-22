@@ -93,9 +93,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#in_depth">2.2. An in-depth look at the solution&#8217;s architecture</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#tech_stack">2.3. More about the technology stack</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -194,7 +191,34 @@ Introduction for the architecture of this solution pattern.
 <div class="sect1">
 <h2 id="_common_challenges"><a class="anchor" href="#_common_challenges"></a><a class="link" href="#_common_challenges">1. Common Challenges</a></h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Most existing  processes for infrastructure, configuration &amp; deployment management face challenges like failed deployments, poor infrastructure design etc. Some of the common challenges are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration inconsistency in environments: It is difficult to track whether desired and actual configuration of an environment match. With manual changes being done, configuration drift will exist in the environment.</p>
+</li>
+<li>
+<p>No development history of applications: It is difficult to find out how applications were built and deployed initially and who worked on them.</p>
+</li>
+<li>
+<p>Security holes in environments: These holes were created for the sake of easier admin access to Continuous Delivery tools. These holes ensure velocity and convenience of development but endanger both applications and their users.</p>
+</li>
+<li>
+<p>Difficulties of disaster recovery: With manual/half-manual processes, disaster recovery requires a strategy in place, which isn’t always upto date.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Fortunately, the GitOps approach can help us resolve all of these issues, provided its principles are properly implemented.</p>
+</div>
+<div class="paragraph">
+<p>In addition to the above challenges, we could also face security attacks if vulnerable images are being used from Public Container Images.</p>
+</div>
+<div class="paragraph">
+<p>RedHat ODF can be used to create private Red Hat Quay registry, a distributed and highly available container image registry for the enterprise. Quay provides secure storage, distribution and governance of containers and cloud-native artifacts on any infrastructure.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -206,27 +230,26 @@ Introduction for the architecture of this solution pattern.
 <p><a href="https://www.redhat.com/en/technologies/cloud-computing/openshift">Red Hat OpenShift</a></p>
 </li>
 <li>
-<p>Red Hat Application Foundation</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://access.redhat.com/products/quarkus">Quarkus</a></p>
+<p><a href="https://access.redhat.com/products/red-hat-advanced-cluster-management-for-kubernetes">Red Hat ACM</a></p>
 </li>
 <li>
-<p><a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-streams-for-apache-kafka">Kafka Streams</a></p>
+<p><a href="https://access.redhat.com/products/red-hat-openshift-data-foundation">RedHat ODF</a></p>
 </li>
-</ul>
-</div>
+<li>
+<p><a href="https://access.redhat.com/products/red-hat-quay">RedHat Quay</a></p>
 </li>
 <li>
 <p>Other:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.postgresql.org/">PostgreSQL database</a></p>
+<p><a href="https://argo-cd.readthedocs.io/en/stable/">ArgoCD</a></p>
 </li>
 <li>
 <p><a href="https://helm.sh/">Helm</a></p>
+</li>
+<li>
+<p><a href="https://www.vaultproject.io/">HashiCorp Vault</a></p>
 </li>
 </ul>
 </div>
@@ -239,15 +262,30 @@ Introduction for the architecture of this solution pattern.
 <h2 id="in_depth"><a class="anchor" href="#in_depth"></a><a class="link" href="#in_depth">3. An in-depth look at the solution&#8217;s architecture</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Technical description including all or some of the following: architecture ir ed diagrams. In-depth details of the decisions made and solutions used. Description of each service and what it is used for. Description of any integration.</p>
+<p>This solution has a Hub Cluster or Management Hub which manages all the other managed clusters. Hub Cluster has ArgoCD deployed in it, which in turns deploys different applications such as RedHat ACM, Vault etc. We can create new or import existing Openshift clusters through RedHat ACM.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="architecture.png" target="_blank" rel="noopener"><img src="_images/architecture.png" alt="architecture" width="100%"></a>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="more_tech"><a class="anchor" href="#more_tech"></a><a class="link" href="#more_tech">4. About the Technology Stack</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>If you want to include more details about the tech stack you used, this is the place.</p>
+<p>MultiCloud GitOps Flow:
+This flow displays how different components are getting deployed and where are these getting deployed. ArgoCD is a critical component of the architecture. A policy on RedHat ACM ensures all the managed clusters have their own ArgoCD deployed through an Openshift GitOps operator. ArgoCD on a managed cluster uses GitHub repo to deploy the applications.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="MultiCloudGitOpsflow_1.jpg" target="_blank" rel="noopener"><img src="_images/MultiCloudGitOpsflow_1.jpg" alt="MultiCloudGitOpsflow 1" width="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>MultiCloud GitOps with ODF &amp; Quay:
+ODF is being installed on Hub and Managed clusters as an ArgoCD application. We can configure ODF installation on each cluster as per the requirements. Once ODF is installed on Hub Cluster, RedHat Quay is also deployed which is using RedHat ODF as the backend. RedHat Quay is a distributed and highly available container image registry.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="MultiCloudODF.jpg" target="_blank" rel="noopener"><img src="_images/MultiCloudODF.jpg" alt="MultiCloudODF" width="100%"></a>
+</div>
 </div>
 </div>
 </div>
