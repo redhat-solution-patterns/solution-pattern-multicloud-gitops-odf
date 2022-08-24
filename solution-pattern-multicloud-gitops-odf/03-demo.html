@@ -226,18 +226,18 @@
 <div class="sect2">
 <h3 id="_before_getting_started"><a class="anchor" href="#_before_getting_started"></a><a class="link" href="#_before_getting_started">2.1. Before getting started</a></h3>
 <div class="paragraph">
-<p>To run this demo, you will need xpto. Adding to that, make sure to have:</p>
+<p>To run this demo, we will need the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ABC</p>
+<p>An Openshift cluster to be used as Hub Cluster(We are using Openshift Cluster deployed on AWS).</p>
 </li>
 <li>
-<p>XYZ</p>
+<p>A second OpenShift cluster to be imported and managed by Hub Cluster(Cluster can be in GCP or Azure).</p>
 </li>
 <li>
-<p>XPTO</p>
+<p>Helm</p>
 </li>
 </ul>
 </div>
@@ -245,7 +245,50 @@
 <div class="sect2">
 <h3 id="_installing_the_demo"><a class="anchor" href="#_installing_the_demo"></a><a class="link" href="#_installing_the_demo">2.2. Installing the demo</a></h3>
 <div class="paragraph">
-<p>Installation guide and basic test of the demo installation if needed</p>
+<p>We will need the following tools to deploy the demo:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>make</p>
+</li>
+<li>
+<p>sh</p>
+</li>
+<li>
+<p>oc</p>
+</li>
+<li>
+<p>git</p>
+</li>
+<li>
+<p>ansible</p>
+</li>
+<li>
+<p>kubernetes.core collection for ansible</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To check if you have the cli tools, you can open your terminal and use following commands:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc version
+make --version
+git version
+ansible --version
+ansible-galaxy --version
+ansible-galaxy collection list #the list should include kubernetes.core</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you can&#8217;t see <code>kubernetes.core</code> collection listed, you can install it with <code>ansible-galaxy</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ ansible-galaxy collection install kubernetes.core</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -261,7 +304,7 @@
   <span class="next"><a href="04-workshop.html" class="query-params-link">4. Workshop</a></span>
 </nav>
 </article>
-<aside class="toc sidebar" data-title="Contents" data-levels="2">
+<aside class="toc sidebar" data-title="Contents" data-levels="3">
   <div class="toc-menu"></div>
 </aside>
   </div>
