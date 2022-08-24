@@ -2,6 +2,7 @@
 :sectnums:
 :sectlinks:
 :doctype: book
+:page-toclevels: 3
 
 = See the Solution in Action
 
@@ -28,14 +29,43 @@ video::Tl0-3Xqgu84[youtube, width=800, height=480]
 == Run the demonstration
 
 === Before getting started
-To run this demo, you will need xpto. Adding to that, make sure to have:
+To run this demo, we will need the following:
 
-* ABC
-* XYZ
-* XPTO
+* An Openshift cluster to be used as Hub Cluster(We are using Openshift Cluster deployed on AWS). 
+* A second OpenShift cluster to be imported and managed by Hub Cluster(Cluster can be in GCP or Azure).
+* Helm
 
 === Installing the demo
-Installation guide and basic test of the demo installation if needed
+We will need the following tools to deploy the demo:
+
+* make
+* sh
+* oc 
+* git
+* ansible 
+* kubernetes.core collection for ansible
+
+To check if you have the cli tools, you can open your terminal and use following commands:
+
+[.console-input]
+[source,shell script]
+```
+oc version
+make --version
+git version
+ansible --version 
+ansible-galaxy --version 
+ansible-galaxy collection list #the list should include kubernetes.core
+```
+
+If you can't see `kubernetes.core` collection listed, you can install it with `ansible-galaxy`:
+
+[.console-input]
+[source,shell script]
+```
+$ ansible-galaxy collection install kubernetes.core
+```
 
 === Walkthrough guide
+
 How to run through the demo
