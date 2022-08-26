@@ -293,6 +293,9 @@ ansible-galaxy collection list #the list should include kubernetes.core</code></
 <div class="paragraph">
 <p>Detailed instructions to run the demo:</p>
 </div>
+<div class="paragraph">
+<p>Below instructions are split into two main parts: 1. Setup Hub Cluster in Openshift cluster running in AWS. 2. Import Openshift cluster running in Azure to be managed by RedHat ACM in Hub Cluster.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -346,9 +349,9 @@ git checkout odf</code></pre>
 </li>
 <li>
 <p>RedHat Quay</p>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<a class="image" href="Operators.png" target="_blank" rel="noopener"><img src="Operators.png" alt="Operators" width="100%"></a>
+<a class="image" href="Operators.png" target="_blank" rel="noopener"><img src="_images/Operators.png" alt="Operators" width="100%"></a>
 </div>
 </div>
 </li>
@@ -357,6 +360,75 @@ git checkout odf</code></pre>
 </li>
 <li>
 <p>Using above steps our Hub Cluster setup has been done, we will be importing an Openshift cluster running in Azure cloud.</p>
+</li>
+<li>
+<p>Using the below command get the HOST for RedHat ACM and open it in a web browser.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get route -n open-cluster-management</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="RHACM_Host.png" target="_blank" rel="noopener"><img src="_images/RHACM_Host.png" alt="RHACM Host" width="100%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="RHACM_UI.png" target="_blank" rel="noopener"><img src="_images/RHACM_UI.png" alt="RHACM UI" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Now in RedHat ACM UI, under clusters view click on "Import Cluster" and enter the following values in the corresponding fields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: azure-cluster</p>
+</li>
+<li>
+<p>Additional Labels: clusterGroup=azure</p>
+</li>
+<li>
+<p>Click on "Save import and generate code"</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="RHACM_Import.png" target="_blank" rel="noopener"><img src="_images/RHACM_Import.png" alt="RHACM Import" width="100%"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RedHat ACM will generate the command, click on "Copy command" to copy the command.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="RHACM_Copy.png" target="_blank" rel="noopener"><img src="_images/RHACM_Copy.png" alt="RHACM Copy" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Login into Azure Openshift cluster using oc login or exporting the KUBECONFIG in a separate terminal.</p>
+</li>
+<li>
+<p>Run the copied command in the latest terminal where we logged in Azure Openshift cluster. Once executed successfully, it will show the below output.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Azure_cli.png" target="_blank" rel="noopener"><img src="_images/Azure_cli.png" alt="Azure cli" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Check RedHat ACM UI and Azure Cluster will be marked as ready under clusters.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Azure_Imported.png" target="_blank" rel="noopener"><img src="_images/Azure_Imported.png" alt="Azure Imported" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>We have imported Azure Openshift cluster successfully and it will be managed by RedHat ACM now.</p>
 </li>
 </ol>
 </div>
