@@ -66,6 +66,60 @@ If you can't see `kubernetes.core` collection listed, you can install it with `a
 $ ansible-galaxy collection install kubernetes.core
 ```
 
+Detailed instructions to run the demo:
+
+1. Fork https://github.com/gmidha/multicloud-gitops/tree/odf on GitHub. Code resides in odf branch
+1. Clone the forked copy of the above repo
++
+[.console-input]
+[source,shell script]
+```
+git clone git@github.com:{username}/multicloud-gitops.git
+```
++
+1. Change into directory multicloud-gitops and ensure that you are in odf branch
++
+[.console-input]
+[source,shell script]
+```
+cd multicloud-gitops
+git checkout odf
+```
++
+1. Login into Openshift cluster using oc login or exporting the KUBECONFIG.
++
+[.console-input]
+[source,shell script]
+```
+oc login
+```
++
+1. Apply changes to the cluster using below command
++
+[.console-input]
+[source,shell script]
+```
+make install
+```
++
+1. After 5 minutes on completion of above command, login into Openshift UI using a web browser and check the installed operators. Following Operators will be installed:
+* RedHat ACM
+* RedHat ODF
+* RedHat Openshift GitOps
+* RedHat Quay
++
+[link=Operators.png, window="_blank"]
+image::Operators.png[width=100%]
++
+1. Using above steps our Hub Cluster setup has been done, we will be importing an Openshift cluster running in Azure cloud.
+
+MultiCloud GitOps Flow:
+This flow displays how different components are getting deployed and where are these getting deployed. ArgoCD is a critical component of the architecture. A policy on RedHat ACM ensures all the managed clusters have their own ArgoCD deployed through an Openshift GitOps operator. ArgoCD on a managed cluster uses GitHub repo to deploy the applications.
+
+[link=MultiCloudGitOpsflow_1.jpg, window="_blank"]
+image::MultiCloudGitOpsflow_1.jpg[width=100%]
+
+
 === Walkthrough guide
 
 How to run through the demo

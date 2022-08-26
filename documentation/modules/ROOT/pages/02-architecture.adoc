@@ -43,12 +43,6 @@ This solution has a Hub Cluster or Management Hub which manages all the other ma
 [link=architecture.png, window="_blank"]
 image::architecture.png[width=100%]
 
-MultiCloud GitOps Flow:
-This flow displays how different components are getting deployed and where are these getting deployed. ArgoCD is a critical component of the architecture. A policy on RedHat ACM ensures all the managed clusters have their own ArgoCD deployed through an Openshift GitOps operator. ArgoCD on a managed cluster uses GitHub repo to deploy the applications.
-
-
-[link=MultiCloudGitOpsflow_1.jpg, window="_blank"]
-image::MultiCloudGitOpsflow_1.jpg[width=100%]
 
 MultiCloud GitOps with ODF & Quay: 
 ODF is being installed on Hub and Managed clusters as an ArgoCD application. We can configure ODF installation on each cluster as per the requirements. Once ODF is installed on Hub Cluster, RedHat Quay is also deployed which is using RedHat ODF as the backend. RedHat Quay is a distributed and highly available container image registry.
