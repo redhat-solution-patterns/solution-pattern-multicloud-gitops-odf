@@ -290,6 +290,85 @@ ansible-galaxy collection list #the list should include kubernetes.core</code></
 <pre class="highlightjs highlight"><code class="language-none hljs">$ ansible-galaxy collection install kubernetes.core</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Detailed instructions to run the demo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fork <a href="https://github.com/gmidha/multicloud-gitops/tree/odf" class="bare">https://github.com/gmidha/multicloud-gitops/tree/odf</a> on GitHub. Code resides in odf branch</p>
+</li>
+<li>
+<p>Clone the forked copy of the above repo</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">git clone git@github.com:{username}/multicloud-gitops.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change into directory multicloud-gitops and ensure that you are in odf branch</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd multicloud-gitops
+git checkout odf</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Login into Openshift cluster using oc login or exporting the KUBECONFIG.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc login</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Apply changes to the cluster using below command</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">make install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>After 5 minutes on completion of above command, login into Openshift UI using a web browser and check the installed operators. Following Operators will be installed:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>RedHat ACM</p>
+</li>
+<li>
+<p>RedHat ODF</p>
+</li>
+<li>
+<p>RedHat Openshift GitOps</p>
+</li>
+<li>
+<p>RedHat Quay</p>
+<div class="imageblock unresolved">
+<div class="content">
+<a class="image" href="Operators.png" target="_blank" rel="noopener"><img src="Operators.png" alt="Operators" width="100%"></a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Using above steps our Hub Cluster setup has been done, we will be importing an Openshift cluster running in Azure cloud.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>MultiCloud GitOps Flow:
+This flow displays how different components are getting deployed and where are these getting deployed. ArgoCD is a critical component of the architecture. A policy on RedHat ACM ensures all the managed clusters have their own ArgoCD deployed through an Openshift GitOps operator. ArgoCD on a managed cluster uses GitHub repo to deploy the applications.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="MultiCloudGitOpsflow_1.jpg" target="_blank" rel="noopener"><img src="_images/MultiCloudGitOpsflow_1.jpg" alt="MultiCloudGitOpsflow 1" width="100%"></a>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_walkthrough_guide"><a class="anchor" href="#_walkthrough_guide"></a><a class="link" href="#_walkthrough_guide">2.3. Walkthrough guide</a></h3>
