@@ -68,6 +68,8 @@ $ ansible-galaxy collection install kubernetes.core
 
 Detailed instructions to run the demo:
 
+Below instructions are split into two main parts: 1. Setup Hub Cluster in Openshift cluster running in AWS. 2. Import Openshift cluster running in Azure to be managed by RedHat ACM in Hub Cluster.
+
 1. Fork https://github.com/gmidha/multicloud-gitops/tree/odf on GitHub. Code resides in odf branch
 1. Clone the forked copy of the above repo
 +
@@ -112,6 +114,47 @@ make install
 image::Operators.png[width=100%]
 +
 1. Using above steps our Hub Cluster setup has been done, we will be importing an Openshift cluster running in Azure cloud.
++
+1. Using the below command get the HOST for RedHat ACM and open it in a web browser.
++
+[.console-input]
+[source,shell script]
+```
+oc get route -n open-cluster-management 
+```
++
+[link=RHACM_Host.png, window="_blank"]
+image::RHACM_Host.png[width=100%]
++
+[link=RHACM_UI.png, window="_blank"]
+image::RHACM_UI.png[width=100%]
++
+1. Now in RedHat ACM UI, under clusters view click on "Import Cluster" and enter the following values in the corresponding fields:
+* Name: azure-cluster
+* Additional Labels: clusterGroup=azure
+* Click on "Save import and generate code"
++
+[link=RHACM_Import.png, window="_blank"]
+image::RHACM_Import.png[width=100%]
++
+1. RedHat ACM will generate the command, click on "Copy command" to copy the command.
++
+[link=RHACM_Copy.png, window="_blank"]
+image::RHACM_Copy.png[width=100%]
++
+1. Login into Azure Openshift cluster using oc login or exporting the KUBECONFIG in a separate terminal.
++
+1. Run the copied command in the latest terminal where we logged in Azure Openshift cluster. Once executed successfully, it will show the below output.
++
+[link=Azure_cli.png, window="_blank"]
+image::Azure_cli.png[width=100%]
++
+1. Check RedHat ACM UI and Azure Cluster will be marked as ready under clusters. 
++
+[link=Azure_Imported.png, window="_blank"]
+image::Azure_Imported.png[width=100%]
++
+1. We have imported Azure Openshift cluster successfully and it will be managed by RedHat ACM now.
 
 MultiCloud GitOps Flow:
 This flow displays how different components are getting deployed and where are these getting deployed. ArgoCD is a critical component of the architecture. A policy on RedHat ACM ensures all the managed clusters have their own ArgoCD deployed through an Openshift GitOps operator. ArgoCD on a managed cluster uses GitHub repo to deploy the applications.
