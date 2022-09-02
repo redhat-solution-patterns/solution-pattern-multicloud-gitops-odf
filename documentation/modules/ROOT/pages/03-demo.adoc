@@ -165,4 +165,179 @@ image::MultiCloudGitOpsflow_1.jpg[width=100%]
 
 === Walkthrough guide
 
-How to run through the demo
+In a MultiCloud GitOps with ODF pattern, once the installation is done using above instruction we can follow the below steps to walkthrough it. 
+
+1. Our Hub Cluster is running in Openshift cluster in AWS. Login into Openshift using terminal cli and run the below command to get ArgoCD url and password.
++
+[.console-input]
+[source,shell script]
+```
+oc -n openshift-gitops get route | grep https && oc -n openshift-gitops extract secrets/openshift-gitops-cluster --to=- 
+```
++
+1. Using the url and admin password from previous command, we will be able to login into ArgoCD. ArgoCD UI will look like this.
++
+[link=Hub_ArgoCD_UI.png, window="_blank"]
+image::Hub_ArgoCD_UI.png[width=100%]
++
+1. We can click on "multicloud-gitops-hub" application to see all the components that are deployed.
++
+[link=Hub_ArgoCD_Tree.png, window="_blank"]
+image::Hub_ArgoCD_Tree.png[width=100%]
++
+1.To validate the components for RedHat ACM were deployed successfully in Hub Cluster, we can use this command and check pods.
++
+[.console-input]
+[source,shell script]
+```
+oc get pods -n open-cluster-management
+```
++
+1. To get the status of StorageCluster and pods for RedHat ODF, we can use this command.
++
+[.console-input]
+[source,shell script]
+```
+oc get pods,StorageCluster -n openshift-storage
+```
++
+[link=StorageCluster_Status.png, window="_blank"]
+image::StorageCluster_Status.png[width=100%]
++
+1. To see the status of RedHat Quay, we can use this command.
++
+[.console-input]
+[source,shell script]
+```
+oc get pods,QuayRegistry -n quay-enterprise
+```
++
+[link=Quay_Status.png, window="_blank"]
+image::Quay_Status.png[width=100%]
++
+1. Note: If for some reason, all pods are in error state, run "oc delete project quay-enterprise" and sync the application with Replace checkbox selected. It will redeploy RedHat Quay.
++
+1. To get the URL of RedHat Quay, we can use this command. We can use this url for logging into RedHat Quay.
++
+[.console-input]
+[source,shell script]
+```
+oc get route quay-registry-quay  -n quay-enterprise
+```
++
+1. So far we have seen the components deployed in Hub Cluster. Now we will be looking at Openshift Azure Cluster managed by Hub Cluster.
++
+1. Login into Managed cluster using oc login or exporting the KUBECONFIG.
++
+[.console-input]
+[source,shell script]
+```
+oc login
+```
++
+1. Once an Openshift Cluster becomes a managed cluster, we can see the pods in open-cluster-management-agent and open-cluster-management-addon to ensure all the required pods are up and running.
++
+[.console-input]
+[source,shell script]
+```
+oc get pods -n open-cluster-management-agent
+``` 
++
+[.console-input]
+[source,shell script]
+```
+oc get pods -n open-cluster-management-agent-addon
+```
++
+[link=OCM_Status.png, window="_blank"]
+image::OCM_Status.png[width=100%]
++
+[link=OCM_addon_Status.png, window="_blank"]
+image::OCM_addon_Status.png[width=100%]
++
+1. Run the below command to get ArgoCD url and admin's password for login.
++
+[.console-input]
+[source,shell script]
+```
+oc -n openshift-gitops get route | grep https && oc -n openshift-gitops extract secrets/openshift-gitops-cluster --to=-
+```
++
+1. Once logged in into ArgoCD, we will see the application deploy. We can click on the application to see all the compoenents it deployed.
++
+[link=Azure_Argocd.png, window="_blank"]
+image::Azure_Argocd.png[width=100%]
++
+[link=Azure_Argocd_tree.png, window="_blank"]
+image::Azure_Argocd_tree.png[width=100%]
++
+1. Using cli, now we will check the status of ODF pods and Storage Cluster in the Managed cluster. StorageCluster takes 10+ min for deployment.
++
+[.console-input]
+[source,shell script]
+```
+oc get pods,StorageCluster -n openshift-storage 
+```
++
+[link=Azure_Pods_ODF.png, window="_blank"]
+image::Azure_Pods_ODF.png[width=100%]
++
+[link=Azure_SC_ODF.png, window="_blank"]
+image::Azure_SC_ODF.png[width=100%]
++
+1. We can also check the available storageclasses once ODF installation is complete by using this cli.
++
+[.console-input]
+[source,shell script]
+```
+oc get storageclasses 
+```
++
+[link=ODF_Storage_Classes.png, window="_blank"]
+image::ODF_Storage_Classes.png[width=100%]
++
+1. To test the deployment of StorageCluster, we are using an application Image Tool. This application is deployed in image-tool namespace. To check the status of application and get its route and pvc, we will use the following cli commands.
++
+[.console-input]
+[source,shell script]
+```
+oc get pods -n image-tool
+```
++
+[.console-input]
+[source,shell script]
+```
+oc get route -n image-tool
+```
++
+[.console-input]
+[source,shell script]
+```
+oc get pvc -n image-tool
+```
++
+[link=Image_Tool_po.png, window="_blank"]
+image::Image_Tool_po.png[width=100%]
++
+[link=Image_Tool_route.png, window="_blank"]
+image::Image_Tool_route.png[width=200%]
++
+[link=Image_Tool_pvc.png, window="_blank"]
+image::Image_Tool_pvc.png[width=200%]
++
+1. Using the above two urls in a web browser, we can use the application which is using above shown PVC to store file objects.
++
+[link=Image_Tool_UI.png, window="_blank"]
+image::Image_Tool_UI.png[width=200%]
++
+1. We can upload the files through UI and it will get stored in a persistent volume store.
++
+[link=Image_Tool_Object.png, window="_blank"]
+image::Image_Tool_Object.png[width=200%]
++
+1. We have another application nginx as part of Image tool, using the url from routes we can access this application. This application uses the same storage and hence the file uploaded from Image tool will be accessible through Nginx UI.
++
+[link=Nginx_UI.png, window="_blank"]
+image::Nginx_UI.png[width=200%]
++
+1. We can click on the file shown above and access it.
