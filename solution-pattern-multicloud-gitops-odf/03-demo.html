@@ -445,7 +445,226 @@ This flow displays how different components are getting deployed and where are t
 <div class="sect2">
 <h3 id="_walkthrough_guide"><a class="anchor" href="#_walkthrough_guide"></a><a class="link" href="#_walkthrough_guide">2.3. Walkthrough guide</a></h3>
 <div class="paragraph">
-<p>How to run through the demo</p>
+<p>In a MultiCloud GitOps with ODF pattern, once the installation is done using above instruction we can follow the below steps to walkthrough it.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Our Hub Cluster is running in Openshift cluster in AWS. Login into Openshift using terminal cli and run the below command to get ArgoCD url and password.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc -n openshift-gitops get route | grep https &amp;&amp; oc -n openshift-gitops extract secrets/openshift-gitops-cluster --to=-</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Using the url and admin password from previous command, we will be able to login into ArgoCD. ArgoCD UI will look like this.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Hub_ArgoCD_UI.png" target="_blank" rel="noopener"><img src="_images/Hub_ArgoCD_UI.png" alt="Hub ArgoCD UI" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>We can click on "multicloud-gitops-hub" application to see all the components that are deployed.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Hub_ArgoCD_Tree.png" target="_blank" rel="noopener"><img src="_images/Hub_ArgoCD_Tree.png" alt="Hub ArgoCD Tree" width="100%"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>1.To validate the components for RedHat ACM were deployed successfully in Hub Cluster, we can use this command and check pods.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods -n open-cluster-management</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To get the status of StorageCluster and pods for RedHat ODF, we can use this command.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods,StorageCluster -n openshift-storage</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="StorageCluster_Status.png" target="_blank" rel="noopener"><img src="_images/StorageCluster_Status.png" alt="StorageCluster Status" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>To see the status of RedHat Quay, we can use this command.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods,QuayRegistry -n quay-enterprise</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Quay_Status.png" target="_blank" rel="noopener"><img src="_images/Quay_Status.png" alt="Quay Status" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Note: If for some reason, all pods are in error state, run "oc delete project quay-enterprise" and sync the application with Replace checkbox selected. It will redeploy RedHat Quay.</p>
+</li>
+<li>
+<p>To get the URL of RedHat Quay, we can use this command. We can use this url for logging into RedHat Quay.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get route quay-registry-quay  -n quay-enterprise</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>So far we have seen the components deployed in Hub Cluster. Now we will be looking at Openshift Azure Cluster managed by Hub Cluster.</p>
+</li>
+<li>
+<p>Login into Managed cluster using oc login or exporting the KUBECONFIG.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc login</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once an Openshift Cluster becomes a managed cluster, we can see the pods in open-cluster-management-agent and open-cluster-management-addon to ensure all the required pods are up and running.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods -n open-cluster-management-agent</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods -n open-cluster-management-agent-addon</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="OCM_Status.png" target="_blank" rel="noopener"><img src="_images/OCM_Status.png" alt="OCM Status" width="100%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="OCM_addon_Status.png" target="_blank" rel="noopener"><img src="_images/OCM_addon_Status.png" alt="OCM addon Status" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Run the below command to get ArgoCD url and admin&#8217;s password for login.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc -n openshift-gitops get route | grep https &amp;&amp; oc -n openshift-gitops extract secrets/openshift-gitops-cluster --to=-</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once logged in into ArgoCD, we will see the application deploy. We can click on the application to see all the compoenents it deployed.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Azure_Argocd.png" target="_blank" rel="noopener"><img src="_images/Azure_Argocd.png" alt="Azure Argocd" width="100%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Azure_Argocd_tree.png" target="_blank" rel="noopener"><img src="_images/Azure_Argocd_tree.png" alt="Azure Argocd tree" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Using cli, now we will check the status of ODF pods and Storage Cluster in the Managed cluster. StorageCluster takes 10+ min for deployment.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods,StorageCluster -n openshift-storage</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Azure_Pods_ODF.png" target="_blank" rel="noopener"><img src="_images/Azure_Pods_ODF.png" alt="Azure Pods ODF" width="100%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Azure_SC_ODF.png" target="_blank" rel="noopener"><img src="_images/Azure_SC_ODF.png" alt="Azure SC ODF" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>We can also check the available storageclasses once ODF installation is complete by using this cli.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get storageclasses</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="ODF_Storage_Classes.png" target="_blank" rel="noopener"><img src="_images/ODF_Storage_Classes.png" alt="ODF Storage Classes" width="100%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>To test the deployment of StorageCluster, we are using an application Image Tool. This application is deployed in image-tool namespace. To check the status of application and get its route and pvc, we will use the following cli commands.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pods -n image-tool</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get route -n image-tool</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">oc get pvc -n image-tool</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Image_Tool_po.png" target="_blank" rel="noopener"><img src="_images/Image_Tool_po.png" alt="Image Tool po" width="100%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Image_Tool_route.png" target="_blank" rel="noopener"><img src="_images/Image_Tool_route.png" alt="Image Tool route" width="200%"></a>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Image_Tool_pvc.png" target="_blank" rel="noopener"><img src="_images/Image_Tool_pvc.png" alt="Image Tool pvc" width="200%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Using the above two urls in a web browser, we can use the application which is using above shown PVC to store file objects.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Image_Tool_UI.png" target="_blank" rel="noopener"><img src="_images/Image_Tool_UI.png" alt="Image Tool UI" width="200%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>We can upload the files through UI and it will get stored in a persistent volume store.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Image_Tool_Object.png" target="_blank" rel="noopener"><img src="_images/Image_Tool_Object.png" alt="Image Tool Object" width="200%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>We have another application nginx as part of Image tool, using the url from routes we can access this application. This application uses the same storage and hence the file uploaded from Image tool will be accessible through Nginx UI.</p>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="Nginx_UI.png" target="_blank" rel="noopener"><img src="_images/Nginx_UI.png" alt="Nginx UI" width="200%"></a>
+</div>
+</div>
+</li>
+<li>
+<p>We can click on the file shown above and access it.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
