@@ -5,9 +5,7 @@
 
 = Workshop
 
-what is this workshop and what will be learned
+Workshop is available in RHPDS website.
 
 == Installing the workshop environment
-=== Before getting started
-=== Installing the environment
-== Delivering the workshop
+* https://demo.redhat.com/catalog?search=odf&item=babylon-catalog-prod%2Fsandboxes-gpte.ocp4-multi-cloud-gitops-odf-bind.prod[The Multi Cloud GitOps with ODF Demo]
