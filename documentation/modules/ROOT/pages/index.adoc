@@ -9,8 +9,6 @@ This solution pattern brings an architectural solution for scenarios where code(
 
 The architecture demonstrates how ArgoCD with Red Hat ACM can manage different clusters and applications deployed on those clusters.
 
-include::content-overview.adoc[]
-
 [#use-cases]
 == Use cases
 
